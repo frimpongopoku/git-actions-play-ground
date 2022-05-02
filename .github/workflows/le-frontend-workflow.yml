@@ -10,17 +10,18 @@ on:
 jobs:
   cypress-test:
     runs-on: ubuntu-latest
-    container: docker pull cypress/included:9.6.0
+    container: cypress/included:9.6.0
+
     steps: 
-    
       - uses: actions/checkout@v3
       - name: Install Cypress and Verify
+      - uses: actions/cache@v2
         run: |
           npm ci
           $(npm bin)/cypress verify 
           
       - name: Run Cypress tests 
-        run: npm run test:chrome 
+        run: npm run test 
         continue-on-error: false
         
       - name: Copy test execution videos and screenshots
