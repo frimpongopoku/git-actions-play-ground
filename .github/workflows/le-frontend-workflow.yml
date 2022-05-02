@@ -9,7 +9,7 @@ on:
 
 jobs:
   cypress-test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     container: cypress/included:9.6.0
     steps: 
     
