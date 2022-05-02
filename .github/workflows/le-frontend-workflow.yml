@@ -10,9 +10,7 @@ on:
 jobs:
   cypress-test:
     runs-on: ubuntu-latest
-    container: 
-      image: cypress/included:9.6.0
-      options: --user 1001
+    container: cypress/included:9.6.0
 
     steps: 
       - uses: actions/checkout@v3
