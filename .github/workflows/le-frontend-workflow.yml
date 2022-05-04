@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       # image: cypress/included:9.6.0
+      # Cypress docker container that we will be running the tests in
       image: cypress/browsers:node16.5.0-chrome94-ff93
+      # If you dont include this, cypress will not have the permissions to read or write in the conainer
       options: --user 1001
 
     steps: 
@@ -28,7 +30,7 @@ jobs:
         
       - name: Copy test execution videos and screenshots
         run: | 
-          mkdir public 
+          mkdir deployment-report 
           cp -r cypress/videos public/videos 
           cp -r cypress/screenshots public/screenshots 
           
@@ -43,5 +45,5 @@ jobs:
         
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./deployment-report
       
