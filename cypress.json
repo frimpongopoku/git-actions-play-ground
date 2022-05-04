@@ -1,1 +1,11 @@
-{}
+{
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "charts": true,
+    "reportPageTitle": "Summary Of Tests",
+    "embeddedScreenshots": true,
+    "inlineAssets": true
+  },
+  "video": false
+}
