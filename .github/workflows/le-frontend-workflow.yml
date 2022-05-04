@@ -11,7 +11,8 @@ jobs:
   cypress-test:
     runs-on: ubuntu-latest
     container: 
-      image: cypress/included:9.6.0
+      # image: cypress/included:9.6.0
+      image: cypress/browsers:node16.5.0-chrome94-ff93
       options: --user 1001
 
     steps: 
