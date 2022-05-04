@@ -1,8 +1,7 @@
-name: Node.js CI
+name: Frontend Testing
 on:
   pull_request:
-    branches:
-      - development
+    branches: [ development ]
 
 jobs:
   cypress-test:
