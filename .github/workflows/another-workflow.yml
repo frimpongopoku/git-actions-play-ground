@@ -6,41 +6,35 @@ jobs:
   cypress-test:
     runs-on: ubuntu-latest
     container:
-      # image: cypress/included:9.6.0
       # Cypress docker container that we will be running the tests in
       image: cypress/browsers:node16.5.0-chrome94-ff93
-      # If you dont include this, cypress will not have the permissions to read or write in the container
+      # If you dont include this, cypress will not have the permissions to read or write
       options: --user 1001
     steps:
       - uses: actions/checkout@v3
       - name: Install and Verify Cypress
-      # Package-lock.json needs to be present for this to work properly
+      # Package-lock.json needs to be present in your branch for this to work properly
         run: |
           npm ci
           $(npm bin)/cypress verify
-
-      # - uses: actions/cache@v2
      
-
       - name: Run Cypress tests
         run: npm run test
         continue-on-error: false
-      # - name: Copy test execution videos and screenshots
-      #   run: |
-      #     mkdir test-summary
-      #     cp -r cypress/videos public/videos
-      #     cp -r cypress/screenshots public/screenshots
+    
+      # Mochawesome report is created in the cypress/report folder so copy the index.html file it generates and  
+      # Put it in a folder that we can target later
       - name: Copy test report from cypress to Github Pages
         run: |
           mkdir report-folder
           cp -r cypress/reports/index.html report-folder
-      # - name: Merge test reports
-      #   run: npm run combine:report
-      # - name: Generate HTML report
-      #   run: npm run generate:report
+
       - name: Deploy report to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Specify the gh-pages branch that will serve our 'index.html'
           publish_branch: gh-pages
+          # Specify the folder that contains that content we want to publish. (i.e. the 'index.html') that contains the summary of 
+          # What happened when our tests run
           publish_dir: ./report-folder
