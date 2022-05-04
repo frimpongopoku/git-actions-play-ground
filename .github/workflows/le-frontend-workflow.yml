@@ -36,6 +36,7 @@ jobs:
           
       - name: Copy test report from cypress to gh-pages folder 
         run: | 
+          mkdir test-summary
           cp -r cypress/reports/index.html ./test-summary
           
       # - name: Merge test reports 
