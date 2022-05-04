@@ -36,8 +36,7 @@ jobs:
           
       - name: Copy test report from cypress to gh-pages folder 
         run: | 
-          mkdir test-summary
-          cp -r cypress/reports/index.html ./test-summary
+          cp -r cypress/reports/index.html public
           
       # - name: Merge test reports 
       #   run: npm run combine:report 
@@ -49,5 +48,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: deve
           publish_dir: ./test-summary
       
