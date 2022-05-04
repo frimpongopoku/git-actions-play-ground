@@ -49,5 +49,5 @@ jobs:
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: deve
-          publish_dir: ./test-summary
+          publish_dir: ./public
       
