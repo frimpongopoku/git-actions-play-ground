@@ -9,7 +9,7 @@ jobs:
       # image: cypress/included:9.6.0
       # Cypress docker container that we will be running the tests in
       image: cypress/browsers:node16.5.0-chrome94-ff93
-      # If you dont include this, cypress will not have the permissions to read or write in the conainer
+      # If you dont include this, cypress will not have the permissions to read or write in the container
       options: --user 1001
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
       #     mkdir test-summary
       #     cp -r cypress/videos public/videos
       #     cp -r cypress/screenshots public/screenshots
-      - name: Copy test report from cypress to gh-pages folder
+      - name: Copy test report from cypress to Github Pages
         run: |
           mkdir build
           cp -r cypress/reports/index.html build
