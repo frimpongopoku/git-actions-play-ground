@@ -14,11 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install and Verify Cypress
+      # Package-lock.json needs to be present for this to work properly
         run: |
           npm ci
           $(npm bin)/cypress verify
-          
+
       - uses: actions/cache@v2
+        with: 
+          token: ${{ github.token }}
+          
       - name: Run Cypress tests
         run: npm run test
         continue-on-error: false
