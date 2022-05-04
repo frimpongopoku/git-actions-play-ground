@@ -30,20 +30,24 @@ jobs:
         
       - name: Copy test execution videos and screenshots
         run: | 
-          mkdir deployment-report 
+          mkdir test-summary 
           cp -r cypress/videos public/videos 
           cp -r cypress/screenshots public/screenshots 
           
-      - name: Merge test reports 
-        run: npm run combine:report 
+      - name: Copy test report from cypress to gh-pages folder 
+        run: | 
+          cp -r cypress/reports/index.html ./test-summary
+          
+      # - name: Merge test reports 
+      #   run: npm run combine:report 
         
-      - name: Generate HTML report 
-        run: npm run generate:report 
+      # - name: Generate HTML report 
+      #   run: npm run generate:report 
         
       - name: Deploy report to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deployment-report
+          publish_dir: ./test-summary
       
