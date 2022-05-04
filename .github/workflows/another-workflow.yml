@@ -17,8 +17,8 @@ jobs:
         run: |
           npm ci
           $(npm bin)/cypress verify
-       - uses: actions/cache@v2
-
+          
+      - uses: actions/cache@v2
       - name: Run Cypress tests
         run: npm run test
         continue-on-error: false
