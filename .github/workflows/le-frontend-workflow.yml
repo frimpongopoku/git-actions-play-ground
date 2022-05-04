@@ -16,11 +16,7 @@ jobs:
 
     steps: 
       - uses: actions/checkout@v3
-      - uses: actions/cache@v2
-
       - name: Install Cypress and Verify
-        
-            
         run: |
           npm ci
           $(npm bin)/cypress verify 
