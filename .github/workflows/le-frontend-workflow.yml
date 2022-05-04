@@ -20,6 +20,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
       - name: Install Cypress and Verify
+      - uses: actions/cache@v2
         run: |
           npm ci
           $(npm bin)/cypress verify 
@@ -36,7 +37,8 @@ jobs:
           
       - name: Copy test report from cypress to gh-pages folder 
         run: | 
-          cp -r cypress/reports/index.html public
+          mkdir build
+          cp -r cypress/reports/index.html build
           
       # - name: Merge test reports 
       #   run: npm run combine:report 
@@ -48,6 +50,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: deve
-          publish_dir: ./public
+          publish_branch: gh-pages
+          # publish_dir: ./public
       
